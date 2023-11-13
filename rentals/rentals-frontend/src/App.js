@@ -4,39 +4,52 @@ import Stack from 'react-bootstrap/Stack';
 
 function PageTitle() {
     return (
-      <div style = {{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-      }}>
-          <page-title>Pillow</page-title>
-      </div>
+        <div>
+            <page-title>Pillow</page-title>
+        </div>
     );
-}
-
-function ContinueButton() {
-  return (
-      <div>
-          <button>
-              Continue
-          </button>
-      </div>
-  );
 }
 
 function EmailForm() {
     return (
-        <div>
+        <div className = {"email-form"} >
             <Form.Label>
                 Email address
             </Form.Label>
 
-            <span className = { "space-between-label-and-text" } />
+            <span className = {"space-between-label-and-text"} />
 
             <Form.Control
-                type = "email"
-                placeholder = "name@example.com"
+                type="email"
+                placeholder="name@example.com"
             />
+        </div>
+    );
+}
+
+function PasswordForm() {
+    return (
+        <div className = "password-form" >
+            <Form.Label>
+                Password
+            </Form.Label>
+
+            <span className={"space-between-label-and-text"}/>
+
+            <Form.Control
+                type="password"
+                placeholder="qwert1234"
+            />
+        </div>
+    );
+}
+
+function ContinueButton() {
+    return (
+        <div className={"space-left"}>
+            <button>
+                Continue
+            </button>
         </div>
     );
 }
@@ -44,18 +57,11 @@ function EmailForm() {
 function VStack() {
     return (
         <Stack gap={3}>
-            <div className="p-2">
-                <PageTitle/>
-            </div>
+            <PageTitle/>
+            <EmailForm/>
+            <PasswordForm/>
 
-            <div className="p-2">
-                <EmailForm/>
-            </div>
-
-            <div className = { "space-left" }
-            >
-                <ContinueButton/>
-            </div>
+            <ContinueButton/>
         </Stack>
     );
 }
@@ -63,13 +69,13 @@ function VStack() {
 function App() {
     return (
         <div
-            style = {{
+            style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
         >
-        <VStack/>
+            <VStack/>
         </div>
     );
 }

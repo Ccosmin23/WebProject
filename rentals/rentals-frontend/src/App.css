@@ -18,7 +18,16 @@
 page-title {
   font-weight: bold;
   font-size: 80px;
+  color: #4D64E8;
+  margin: 20px;
+}
+
+.email-form {
   margin: 20px
+}
+
+.password-form {
+  margin-left: 50px;
 }
 
 h1 {
