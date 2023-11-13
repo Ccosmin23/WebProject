@@ -60,7 +60,6 @@ function VStack() {
             <PageTitle/>
             <EmailForm/>
             <PasswordForm/>
-
             <ContinueButton/>
         </Stack>
     );
@@ -76,6 +75,7 @@ function App() {
             }}
         >
             <VStack/>
+
         </div>
     );
 }
