@@ -1,45 +1,77 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState} from "react";
+import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/Stack';
 
-function MyButton() {
-    const [count, setCount] = useState(0);
+function PageTitle() {
+    return (
+      <div style = {{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+      }}>
+          <page-title>Pillow</page-title>
+      </div>
+    );
+}
 
-  function handleClick() {
-    setCount(count + 1);
-  }
-
+function ContinueButton() {
   return (
-      <button onClick={handleClick}>
-        Clicked { count } times
-      </button>
+      <div>
+          <button>
+              Continue
+          </button>
+      </div>
   );
 }
 
-const user = {
-  name: 'cosmin cosan',
-  imageUrl: 'https://tapptitude.com/wp-content/uploads/2022/02/Cosmin-Cosan-1.png',
-  imageSize: 90
+function EmailForm() {
+    return (
+        <div>
+            <Form.Label>
+                Email address
+            </Form.Label>
+
+            <span className = { "space-between-label-and-text" } />
+
+            <Form.Control
+                type = "email"
+                placeholder = "name@example.com"
+            />
+        </div>
+    );
+}
+
+function VStack() {
+    return (
+        <Stack gap={3}>
+            <div className="p-2">
+                <PageTitle/>
+            </div>
+
+            <div className="p-2">
+                <EmailForm/>
+            </div>
+
+            <div className = { "space-left" }
+            >
+                <ContinueButton/>
+            </div>
+        </Stack>
+    );
 }
 
 function App() {
-  return (
-      <div>
-        <h1> { user.name } </h1>
-
-        <img
-            className = "deer"
-            src = { user.imageUrl }
-            alt = { 'photo of' + user.name }
+    return (
+        <div
             style = {{
-              width: user.imageSize,
-              height: user.imageSize
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
             }}
-        />
-
-        <MyButton/>
-      </div>
-  );
+        >
+        <VStack/>
+        </div>
+    );
 }
 
 export default App;
