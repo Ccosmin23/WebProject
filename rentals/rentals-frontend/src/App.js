@@ -1,6 +1,6 @@
 import './App.css';
-import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
+import Authentication from "./Authentication/Authentication";
 
 function PageTitle() {
     return (
@@ -10,57 +10,11 @@ function PageTitle() {
     );
 }
 
-function EmailForm() {
-    return (
-        <div className = {"email-form"} >
-            <Form.Label>
-                Email address
-            </Form.Label>
-
-            <span className = {"space-between-label-and-text"} />
-
-            <Form.Control
-                type="email"
-                placeholder="name@example.com"
-            />
-        </div>
-    );
-}
-
-function PasswordForm() {
-    return (
-        <div className = "password-form" >
-            <Form.Label>
-                Password
-            </Form.Label>
-
-            <span className={"space-between-label-and-text"}/>
-
-            <Form.Control
-                type="password"
-                placeholder="qwert1234"
-            />
-        </div>
-    );
-}
-
-function ContinueButton() {
-    return (
-        <div className={"space-left"}>
-            <button>
-                Continue
-            </button>
-        </div>
-    );
-}
-
-function VStack() {
+function AppVStack() {
     return (
         <Stack gap={3}>
             <PageTitle/>
-            <EmailForm/>
-            <PasswordForm/>
-            <ContinueButton/>
+            <Authentication/>
         </Stack>
     );
 }
@@ -74,8 +28,7 @@ function App() {
                 justifyContent: 'center',
             }}
         >
-            <VStack/>
-
+            <AppVStack/>
         </div>
     );
 }
