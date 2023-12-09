@@ -26,6 +26,7 @@ function App() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                // background: 'darkblue',
             }}
         >
             <AppVStack/>

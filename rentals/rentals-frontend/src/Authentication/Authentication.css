@@ -61,8 +61,12 @@ h1 {
     white-space: pre-wrap;
 }
 
-.space-between-label-and-text {
-    margin-left: 20px;
+.bottom-space-5 {
+    margin-bottom: 5px;
+}
+
+.bottom-space-20 {
+    margin-bottom: 20px;
 }
 
 .space-left {
@@ -73,7 +77,6 @@ h1 {
 .space-right {
     margin-right: 100px;
 }
-
 
 @keyframes App-logo-spin {
     from {
