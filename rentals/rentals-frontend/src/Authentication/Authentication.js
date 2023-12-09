@@ -19,10 +19,31 @@ function EmailForm() {
     };
 
     // Function to handle form submission
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('Email entered:', email);
-        console.log('Password entered:', password);
+        try {
+            const response = await fetch('localhost:8080/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
+
+            if (response.ok) {
+                // Request was successful, handle the response as needed
+                const data = await response.json();
+                console.log('Response from server:', data);
+            } else {
+                // Request failed, handle errors
+                console.error('Error:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
     };
 
     return (
