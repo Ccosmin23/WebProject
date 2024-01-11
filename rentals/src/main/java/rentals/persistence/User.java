@@ -3,11 +3,9 @@ package rentals.persistence;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
 import org.springframework.data.annotation.Id;
 
 @Entity
-@Table(name = "user")
 public class User {
 
     @jakarta.persistence.Id
@@ -15,18 +13,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
-    private String password;
-
-    // Getters and setters, constructors, etc.
-
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+    private String username;
 
     public String getPassword() {
         return password;
@@ -36,6 +31,8 @@ public class User {
         this.password = password;
     }
 
+    private String password;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -43,4 +40,6 @@ public class User {
     public Long getId() {
         return id;
     }
+
+    // Getters and setters
 }
