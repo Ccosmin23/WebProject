@@ -74,6 +74,9 @@ h1 {
   margin-right: 100px;
 }
 
+.space-between-label-and-input {
+  margin-right: 10px; /* Adjust the value as needed */
+}
 
 @keyframes App-logo-spin {
   from {
