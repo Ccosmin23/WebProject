@@ -71,8 +71,8 @@ function VStack() {
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        console.log('Email (from useEffect):', email);
-        console.log('Password (from useEffect):', password);
+        // console.log('Email (from useEffect):', email);
+        // console.log('Password (from useEffect):', password);
     }, [email, password]);
 
     return (
