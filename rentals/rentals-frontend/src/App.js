@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
@@ -69,6 +69,11 @@ function ContinueButton({ email, password }) {
 function VStack() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        console.log('Email (from useEffect):', email);
+        console.log('Password (from useEffect):', password);
+    }, [email, password]);
 
     return (
         <Stack gap={3}>
