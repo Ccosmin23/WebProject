@@ -11,7 +11,7 @@ import rentals.persistence.User;
 import rentals.service.UserService;
 
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/api/auth")
 public class SignInController implements UserDetailsService {
 
     private final UserService userService;
@@ -20,7 +20,7 @@ public class SignInController implements UserDetailsService {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping(value = "/login")
     public String login(@RequestBody User user) {
         UserDetails userDetails = loadUserByUsername(user.getUsername());
         // Implement your authentication logic here

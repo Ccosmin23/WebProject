@@ -8,7 +8,7 @@ import rentals.persistence.User;
 import rentals.service.UserService;
 
 @RestController
-@RequestMapping("/api/register")
+@RequestMapping("/api/auth")
 public class SignUpController {
 
     private final UserService userService;
@@ -17,7 +17,7 @@ public class SignUpController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping(value = "/register")
     public void registerUser(@RequestBody User user) {
         userService.saveUser(user);
     }

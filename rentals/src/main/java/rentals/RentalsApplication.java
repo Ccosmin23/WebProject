@@ -2,7 +2,7 @@ package rentals;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -13,8 +13,8 @@ public class RentalsApplication {
         SpringApplication.run(RentalsApplication.class, args);
     }
 
-    @RequestMapping(value = "/")
-    public String hello(){
+    @GetMapping("/hello")
+    public String hello() {
         return "Hello World";
     }
 }
