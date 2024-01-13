@@ -19,7 +19,8 @@ public class SignInController {
 
     @PostMapping( "/login")
     public String login(@RequestBody User user) {
-        return "login";
+        User test = userService.findByUsername(user.getUsername());
+        return test.getUsername();
     }
 
 }
