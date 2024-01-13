@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rentals.persistence.User;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/public/auth")
 public class SignInController {
 
     private final UserService userService;
@@ -21,5 +21,4 @@ public class SignInController {
         User test = userService.findByUsername(user.getUsername());
         return test.getUsername();
     }
-
 }

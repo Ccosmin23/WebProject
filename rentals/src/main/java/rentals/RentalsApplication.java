@@ -17,4 +17,9 @@ public class RentalsApplication {
     public String hello() {
         return "Hello World";
     }
+
+    @GetMapping("/api/public/hello")
+    public String hello2() {
+        return "public Hello World";
+    }
 }

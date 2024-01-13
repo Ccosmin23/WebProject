@@ -1,31 +1,38 @@
 package rentals.security;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
+@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-public class SecurityConfig extends GlobalMethodSecurityConfiguration {
-
+public class SecurityConfig {
 
     @Bean
-    public static PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        RequestMatcher publicMatcher = new RegexRequestMatcher("/api/public/.*", null);
+//        RequestMatcher helloMatcher = new RegexRequestMatcher("/hello", null);
+        RequestMatcher combinedMatcher = new OrRequestMatcher(publicMatcher);
+
         http
+                .csrf(csrf -> csrf.disable())
                 .authorizeRequests()
-                .dispatcherTypeMatchers(HttpMethod.valueOf("/index")).permitAll()
+                .requestMatchers(combinedMatcher).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(
@@ -34,16 +41,14 @@ public class SecurityConfig extends GlobalMethodSecurityConfiguration {
                                 .loginProcessingUrl("/api/auth/login")
                                 .defaultSuccessUrl("/")
                                 .permitAll()
-                ).logout(
+                )
+                .logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/api/auth/logout"))
                                 .permitAll()
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID")
-
                 );
         return http.build();
     }
-
-
 }
