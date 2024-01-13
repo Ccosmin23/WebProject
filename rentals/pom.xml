@@ -44,11 +44,11 @@
 <!--            <version>6.1.2</version>-->
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-aot</artifactId>
-            <version>0.12.2</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.experimental</groupId>-->
+<!--            <artifactId>spring-aot</artifactId>-->
+<!--            <version>0.12.2</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,6 +90,19 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
 <!--            <version>6.1.2</version>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+<!--            <version>3.2.1</version>-->
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+<!--            <version>5.5.2</version>-->
         </dependency>
 
     </dependencies>
