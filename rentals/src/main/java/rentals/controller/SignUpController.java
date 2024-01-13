@@ -17,8 +17,9 @@ public class SignUpController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/register")
+    @PostMapping("/register")
     public void registerUser(@RequestBody User user) {
-        userService.saveUser(user);
+        System.out.println("register");
+//        userService.saveUser(user);
     }
 }

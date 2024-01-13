@@ -17,7 +17,7 @@ public class SignInController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/login")
+    @PostMapping( "/login")
     public String login(@RequestBody User user) {
         return "login";
     }
