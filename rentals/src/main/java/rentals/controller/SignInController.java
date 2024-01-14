@@ -1,10 +1,7 @@
 package rentals.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import rentals.persistence.User;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/public/auth")
@@ -16,9 +13,15 @@ public class SignInController {
         this.userService = userService;
     }
 
-    @PostMapping( "/login")
-    public String login(@RequestBody User user) {
-        User test = userService.findByUsername(user.getUsername());
-        return test.getUsername();
+    @GetMapping("/login")
+    public ResponseEntity<?> login() {
+        return ResponseEntity.ok().body("{\"message\":\"Home1\"}");
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> handleLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
+        // Handle login logic here
+        return ResponseEntity.ok().body("{\"message\":\"Home\"}");
+    }
+
 }

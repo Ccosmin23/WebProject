@@ -8,20 +8,17 @@ function Authentication() {
         event.preventDefault();
 
         try {
-            const response = await fetch('localhost:8080/api/auth/login', {
+            const response = await fetch('http://localhost:8080/api/public/auth/login', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify({
-                    email: email,
-                    password: password,
+                    username: "cc",
+                    password: "cc",
                 }),
             });
 
             if (response.ok) {
                 // Request was successful, handle the response as needed
-                const data = await response.json();
+                const data = await response.text();
                 console.log('Response from server:', data);
             } else {
                 // Request failed, handle errors
@@ -31,6 +28,7 @@ function Authentication() {
             console.error('Error:', error.message);
         }
     };
+
 
     return (
         <div>

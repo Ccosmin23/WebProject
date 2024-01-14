@@ -37,9 +37,7 @@ public class SecurityConfig {
                 .and()
                 .formLogin(
                         form -> form
-                                .loginPage("/api/auth/login")
-                                .loginProcessingUrl("/api/auth/login")
-                                .defaultSuccessUrl("/")
+                                .loginPage("/api/public/auth/login")
                                 .permitAll()
                 )
                 .logout(
