@@ -1,4 +1,4 @@
-package rentals.controller;
+package rentals.service;
 
 import org.springframework.stereotype.Service;
 import rentals.persistence.User;

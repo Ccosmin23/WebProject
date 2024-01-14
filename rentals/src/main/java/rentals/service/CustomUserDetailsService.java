@@ -1,14 +1,13 @@
-package rentals.security;
+package rentals.service;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import rentals.controller.UserService;
+import rentals.persistence.User;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -22,17 +21,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Replace the hard-coded values with actual user data from your database
+        User user = userService.findByUsername(username);
 
-
-        if ("cc".equals(username)) {
-            return new org.springframework.security.core.userdetails.User(
-                    username,
-                    passwordEncoder.encode("cc"),
-                    Arrays.asList(new SimpleGrantedAuthority("USER"))
-            );
-        } else {
-            throw new UsernameNotFoundException("User not found with username: " + username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
         }
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                passwordEncoder.encode(user.getPassword()),
+                Collections.emptyList()
+        );
     }
 }

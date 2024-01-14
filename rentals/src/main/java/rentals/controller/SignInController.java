@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import rentals.service.UserService;
 
 import java.util.ArrayList;
 
@@ -33,8 +34,9 @@ public class SignInController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam("username") String username, @RequestParam("password") String password) {
+        System.out.println("\n ------ajunge me aici");
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        
+
         if (passwordEncoder.matches(password, userDetails.getPassword())) {
             // Credentials are correct, perform authentication
             Authentication auth = new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>());
