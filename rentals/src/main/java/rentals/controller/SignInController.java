@@ -1,50 +1,74 @@
-package rentals.controller;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import rentals.service.UserService;
-
-import java.util.ArrayList;
-import java.util.Map;
-
-@RestController
-@RequestMapping("/api/public/auth")
-public class SignInController {
-
-    private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
-
-    public SignInController(UserService userService, PasswordEncoder passwordEncoder/*, UserDetailsService userDetailsService*/) {
-        this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
-//        this.userDetailsService = userDetailsService;
-    }
-
+//package rentals.controller;
+//
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.web.bind.annotation.*;
+//import rentals.persistence.User;
+//import rentals.service.UserService;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Map;
+//
+//@RestController
+//@RequestMapping("/api/public/auth")
+//public class SignInController {
 //    private final UserDetailsService userDetailsService;
-
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
-        System.out.println("\n ------ajunge pe aici");
-
-        String username = loginData.get("username");
-        String password = loginData.get("password");
-
-        if (passwordEncoder.matches(password, userService.findByUsername(username).getPassword())) {
-            // Credentials are correct, perform authentication
-            Authentication auth = new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>());
-            SecurityContextHolder.getContext().setAuthentication(auth);
-            return ResponseEntity.ok().body("{\"message\":\"Login successful\"}");
-        } else {
-            // Credentials are incorrect
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"Invalid username or password\"}");
-        }
-    }
-}
+//    private final UserService userService;
+//    private final PasswordEncoder passwordEncoder;
+//
+//    public SignInController(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService, UserService userService) {
+//        this.passwordEncoder = passwordEncoder;
+//        this.userDetailsService = userDetailsService;
+//        this.userService = userService;
+//    }
+//
+//    @PostMapping("/login")
+//    public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
+//        String username = loginData.get("username");
+//        String password = loginData.get("password");
+//
+//        System.out.println("\n username = " + username);
+//        System.out.println("\n password = " + password);
+//
+//        try {
+//            UserDetails userDetails = userDetailsService.loadUserByUsername("cc");
+//            // ... continue with authentication ...
+//
+//            if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+//                return ResponseEntity.badRequest().body("{\"message\":\"Username or password is empty\"}");
+//            }
+//
+//            // Encode the password
+//            String encodedPassword = passwordEncoder.encode(password);
+//
+//            Authentication auth = new UsernamePasswordAuthenticationToken("cc", encodedPassword, new ArrayList<>());
+//            SecurityContextHolder.getContext().setAuthentication(auth);
+//            return ResponseEntity.ok().body("{\"message\":\"Login successful\"}");
+//
+//
+//        } catch (UsernameNotFoundException e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"message\":\"User not found\"}");
+//        }
+//
+//
+//    }
+//
+//
+//    @GetMapping("/all")
+//    public ResponseEntity<List<User>> getAllUsers() {
+//        List<User> users = userService.getAllUsers();
+//        return ResponseEntity.ok(users);
+//    }
+//
+//
+//
+//
+//}

@@ -9,11 +9,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
@@ -27,13 +26,8 @@ import java.io.PrintWriter;
 public class SecurityConfig {
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        RequestMatcher publicMatcher = new RegexRequestMatcher("/api/public/.*", null);
+        RequestMatcher publicMatcher = new RegexRequestMatcher("/all", null);
 //        RequestMatcher helloMatcher = new RegexRequestMatcher("/hello", null);
         RequestMatcher combinedMatcher = new OrRequestMatcher(publicMatcher);
 
@@ -46,18 +40,18 @@ public class SecurityConfig {
                 .formLogin(
                         form -> form
                                 .loginPage("/hello")
-                                .loginProcessingUrl("/api/public/auth/login")
+                                .loginProcessingUrl("/api/public/auth/all")
                                 .defaultSuccessUrl("/api/private/dashboard")
-                                .failureHandler(myAuthenticationFailureHandler())
+//                                .failureHandler(myAuthenticationFailureHandler())
                                 .permitAll()
+                )
+                .logout(
+                        logout -> logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/api/auth/logout"))
+                                .permitAll()
+                                .invalidateHttpSession(true)
+                                .deleteCookies("JSESSIONID")
                 );
-//                .logout(
-//                        logout -> logout
-//                                .logoutRequestMatcher(new AntPathRequestMatcher("/api/auth/logout"))
-//                                .permitAll()
-//                                .invalidateHttpSession(true)
-//                                .deleteCookies("JSESSIONID")
-//                );
         return http.build();
     }
 
