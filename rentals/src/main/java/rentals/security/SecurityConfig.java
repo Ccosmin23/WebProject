@@ -28,8 +28,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         RequestMatcher publicMatcher = new RegexRequestMatcher("/all", null);
-//        RequestMatcher helloMatcher = new RegexRequestMatcher("/hello", null);
-        RequestMatcher combinedMatcher = new OrRequestMatcher(publicMatcher);
+        RequestMatcher helloMatcher = new RegexRequestMatcher("/api/public/auth/all", null);
+        RequestMatcher combinedMatcher = new OrRequestMatcher(publicMatcher, helloMatcher);
 
         http
                 .csrf(csrf -> csrf.disable())
@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .formLogin(
                         form -> form
                                 .loginPage("/hello")
-                                .loginProcessingUrl("/api/public/auth/all")
+                                .loginProcessingUrl("/api/public/auth/login")
                                 .defaultSuccessUrl("/api/private/dashboard")
 //                                .failureHandler(myAuthenticationFailureHandler())
                                 .permitAll()
