@@ -22,4 +22,9 @@ public class RentalsApplication {
     public String hello2() {
         return "public Hello World";
     }
+
+    @GetMapping("/api/private/dashboard")
+    public String dashboard() {
+        return "private dashboard";
+    }
 }
