@@ -19,6 +19,7 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @Configuration
 @EnableWebSecurity
@@ -65,10 +66,20 @@ public class SecurityConfig {
         return new SimpleUrlAuthenticationFailureHandler() {
             @Override
             public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-                // Custom logic here
-                System.out.println("\n =====\nin cauzul in care verm sa trimitem un status code sau sa facem altceva pe failure\n");
-                response.sendRedirect("/hello");
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                PrintWriter writer = response.getWriter();
+                writer.write("{\"message\":\"Invalid username or password\"}");
+                writer.flush();
             }
+
+//            @Override
+//            public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+//                // Custom logic here
+//                System.out.println("\n =====\nin cauzul in care verm sa trimitem un status code sau sa facem altceva pe failure\n");
+////                response.sendRedirect("/hello");
+//            }
         };
     }
+
+
 }

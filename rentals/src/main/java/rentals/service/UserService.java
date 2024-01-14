@@ -21,6 +21,13 @@ public class UserService {
     }
 
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        System.out.println("\nusername = " + username + "\n");
+
+        User user = userRepository.findByUsername(username);
+
+        System.out.println("\nuser found with password = " + user.getPassword() + "\n");
+
+        return user;
     }
+
 }
