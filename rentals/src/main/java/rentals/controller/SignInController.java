@@ -42,14 +42,14 @@ public class SignInController {
             UserDetails userDetails = userDetailsService.loadUserByUsername("cc");
             // ... continue with authentication ...
 
-            if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            if (userDetails.getUsername() == null || userDetails.getUsername().trim().isEmpty() || userDetails.getPassword() == null || userDetails.getPassword().trim().isEmpty()) {
                 return ResponseEntity.badRequest().body("{\"message\":\"Username or password is empty\"}");
             }
 
             // Encode the password
-            String encodedPassword = passwordEncoder.encode(password);
+            String encodedPassword = passwordEncoder.encode(userDetails.getPassword());
 
-            Authentication auth = new UsernamePasswordAuthenticationToken("cc", encodedPassword, new ArrayList<>());
+            Authentication auth = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), encodedPassword, new ArrayList<>());
             SecurityContextHolder.getContext().setAuthentication(auth);
             return ResponseEntity.ok().body("{\"message\":\"Login successful\"}");
 

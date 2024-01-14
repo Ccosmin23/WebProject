@@ -29,7 +29,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         RequestMatcher publicMatcher = new RegexRequestMatcher("/all", null);
         RequestMatcher helloMatcher = new RegexRequestMatcher("/api/public/auth/all", null);
-        RequestMatcher combinedMatcher = new OrRequestMatcher(publicMatcher, helloMatcher);
+        RequestMatcher helloMatcher2 = new RegexRequestMatcher("/api/public/auth/login", null);
+        RequestMatcher combinedMatcher = new OrRequestMatcher(publicMatcher, helloMatcher, helloMatcher2);
 
         http
                 .csrf(csrf -> csrf.disable())
@@ -40,7 +41,7 @@ public class SecurityConfig {
                 .formLogin(
                         form -> form
                                 .loginPage("/hello")
-                                .loginProcessingUrl("/api/public/auth/login")
+                                .loginProcessingUrl("/api/public/auth/login2")
                                 .defaultSuccessUrl("/api/private/dashboard")
 //                                .failureHandler(myAuthenticationFailureHandler())
                                 .permitAll()

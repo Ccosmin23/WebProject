@@ -1,4 +1,4 @@
-package rentals.service;
+package rentals.dao;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
