@@ -42,6 +42,4 @@ public class UserEntity {
     public Long getId() {
         return id;
     }
-
-    // Getters and setters
 }

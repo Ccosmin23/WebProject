@@ -19,11 +19,7 @@ public class UserService {
     }
 
     public UserEntity findByUsername(String username) {
-        username = "cc";
-
-        System.out.println("\nusername = " + username + "\n");
-
-        UserEntity userEntity = userRepository.findByUsername("cc");
+        UserEntity userEntity = userRepository.findByUsername(username);
 
         System.out.println("\nuser found with password = " + userEntity.getPassword() + "\n");
 

@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import rentals.entity.UserEntity;
-import rentals.repository.UserRepository;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,14 +16,14 @@ import java.util.List;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
-    private final UserRepository userRepository;
+    private final UserService userService;
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CustomUserDetailsService(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
@@ -33,27 +32,26 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Username is empty or null");
         }
 
-        UserEntity userEntity = userRepository.findByUsername("cc");
+        UserEntity userEntity = userService.findByUsername(username);
 
         if (userEntity == null) {
             throw new UsernameNotFoundException("User not found");
         }
 
-        String password = userEntity.getPassword();
-        if (password == null) {
+
+        if (userEntity.getPassword() == null) {
             throw new UsernameNotFoundException("Password not set for the user");
         }
 
         return new org.springframework.security.core.userdetails.User(
                 userEntity.getUsername(),
-                password,
+                userEntity.getPassword(),
                 Collections.emptyList()
         );
     }
-
-
+    
     public List<UserEntity> loadAllUsers() {
-        return this.userRepository.findAll();
+        return this.userService.getAllUsers();
     }
 
 }

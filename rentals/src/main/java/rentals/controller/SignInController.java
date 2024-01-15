@@ -45,8 +45,7 @@ public class SignInController {
         System.out.println("\n password = " + password);
 
         try {
-            UserDetails userDetails = userDetailsService.loadUserByUsername("cc");
-
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             if (userDetails.getUsername() == null || userDetails.getUsername().trim().isEmpty() || userDetails.getPassword() == null || userDetails.getPassword().trim().isEmpty()) {
                 return ResponseEntity.badRequest().body("{\"message\":\"Username or password is empty\"}");
             }
