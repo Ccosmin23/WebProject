@@ -4,4 +4,4 @@
 
 I'm just joking, Pillow is just a web app designed to provide a comprehensive understanding of technologies, design patterns, and other topics. Please take a moment to explore and have some fun with me as we delve into these chunks of code. Enjoy! :) 
 
-![Alt text](/Users/cosmincosan-personal/Desktop/facultate_2023_2024/web/rentals/all_users.png "")
+![Alt text](/all_users.png "")
