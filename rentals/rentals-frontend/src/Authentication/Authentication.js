@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function Authentication() {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (event) => {
@@ -37,16 +37,18 @@ function Authentication() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <label>Email:</label>
+                <label style={{ paddingRight: 13 }}>Username:</label>
                 <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
 
                 <br />
 
-                <label>Password:</label>
+
+
+                <label style={{ paddingRight: 17 }}>Password:</label>
                 <input
                     type="password"
                     value={password}
