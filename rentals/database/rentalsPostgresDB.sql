@@ -145,8 +145,8 @@ insert into properties (title, price, housingType, bedrooms, usableSurface, gard
 values ('propr1', 122, 'apartament', 3, 60, 100, 10, 2, 1),
        ('propr2', 552, 'casa', 5, 80, 200, 11, 1, 2);
 
-insert into users (id, username, email, firstname, lastname, password, rights, addressID)
-VALUES (1, 'cc', 'cc@cc.cc', 'cc', 'cc', '$2a$10$UxHN3.WgV2B8NeZi27iLMeHT2XzZJ4BxQkNEmEKRrK0I6FVwCz8fy', 1);
+insert into users (username, email, firstname, lastname, password, rights, addressID)
+VALUES ('aa', 'aa@aa.aa', 'aa', 'a', '$2a$10$UxHN3.WgV2B8NeZi27iLMeHT2XzZJ4BxQkNEmEKRrK0I6FVwCz8fy', 1, 2);
 
 delete from users
 where id = 1;
