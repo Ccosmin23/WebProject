@@ -49,7 +49,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 Collections.emptyList()
         );
     }
-    
+
     public List<UserEntity> loadAllUsers() {
         return this.userService.getAllUsers();
     }

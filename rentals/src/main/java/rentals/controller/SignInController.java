@@ -60,8 +60,6 @@ public class SignInController {
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"message\":\"User not found\"}");
         }
-
-
     }
 
 

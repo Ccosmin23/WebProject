@@ -18,10 +18,12 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import rentals.service.SessionService;
+import rentals.entity.PropertyEntity;
+import rentals.service.PropertiesService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -31,7 +33,7 @@ import static org.springframework.security.web.util.matcher.AntPathRequestMatche
 public class SecurityConfig {
 
     @Autowired
-    private SessionService sessionService;
+    private PropertiesService propertiesService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -84,7 +86,10 @@ public class SecurityConfig {
                 System.out.println("a trecut si pe aici");
 
                 HttpSession session = request.getSession();
-                sessionService.saveSession(session);
+
+                List<PropertyEntity> properties = propertiesService.findAll();
+                System.out.println("\nprima proprietate din DB = "+ properties.get(0));
+
                 super.onAuthenticationSuccess(request, response, authentication);
             }
         };
