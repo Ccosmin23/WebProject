@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import rentals.persistence.User;
+import rentals.entity.UserEntity;
 import rentals.service.CustomUserDetailsService;
 import rentals.service.SessionService;
 import rentals.service.UserService;
@@ -46,13 +46,11 @@ public class SignInController {
 
         try {
             UserDetails userDetails = userDetailsService.loadUserByUsername("cc");
-            // ... continue with authentication ...
 
             if (userDetails.getUsername() == null || userDetails.getUsername().trim().isEmpty() || userDetails.getPassword() == null || userDetails.getPassword().trim().isEmpty()) {
                 return ResponseEntity.badRequest().body("{\"message\":\"Username or password is empty\"}");
             }
 
-            // Encode the password
             String encodedPassword = passwordEncoder.encode(userDetails.getPassword());
 
             Authentication auth = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), encodedPassword, new ArrayList<>());
@@ -69,9 +67,9 @@ public class SignInController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userDetailsService.loadAllUsers();
-        return ResponseEntity.ok(users);
+    public ResponseEntity<List<UserEntity>> getAllUsers() {
+        List<UserEntity> userEntities = userDetailsService.loadAllUsers();
+        return ResponseEntity.ok(userEntities);
     }
 
     @GetMapping("/session")

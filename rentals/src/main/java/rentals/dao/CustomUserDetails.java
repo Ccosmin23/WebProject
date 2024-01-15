@@ -2,16 +2,16 @@ package rentals.dao;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import rentals.persistence.User;
+import rentals.entity.UserEntity;
 
 import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
 
-    private User user;
+    private UserEntity userEntity;
 
-    public CustomUserDetails(User user) {
-        this.user = user;
+    public CustomUserDetails(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     @Override
@@ -21,12 +21,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return userEntity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return userEntity.getUsername();
     }
 
     @Override
@@ -48,9 +48,5 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-//    public String getFullName() {
-//        return user.getFirstName() + " " + user.getLastName();
-//    }
 
 }

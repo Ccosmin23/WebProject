@@ -1,7 +1,7 @@
 package rentals.service;
 
 import org.springframework.stereotype.Service;
-import rentals.persistence.User;
+import rentals.entity.UserEntity;
 import rentals.repository.UserRepository;
 
 import java.util.List;
@@ -14,23 +14,23 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public UserEntity saveUser(UserEntity userEntity) {
+        return userRepository.save(userEntity);
     }
 
-    public User findByUsername(String username) {
+    public UserEntity findByUsername(String username) {
         username = "cc";
 
         System.out.println("\nusername = " + username + "\n");
 
-        User user = userRepository.findByUsername("cc");
+        UserEntity userEntity = userRepository.findByUsername("cc");
 
-        System.out.println("\nuser found with password = " + user.getPassword() + "\n");
+        System.out.println("\nuser found with password = " + userEntity.getPassword() + "\n");
 
-        return user;
+        return userEntity;
     }
 
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return userRepository.findAll();
     }
 

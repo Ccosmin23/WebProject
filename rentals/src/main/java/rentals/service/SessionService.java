@@ -17,7 +17,7 @@ public class SessionService {
         SessionEntity sessionEntity = new SessionEntity();
 
 //        sessionEntity.setId(Long.valueOf(session.getId()));
-        // Set other properties...
+
         sessionRepository.save(sessionEntity);
     }
 }

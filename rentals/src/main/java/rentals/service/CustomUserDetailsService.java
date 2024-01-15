@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import rentals.persistence.User;
+import rentals.entity.UserEntity;
 import rentals.repository.UserRepository;
 
 import java.util.Collections;
@@ -33,26 +33,26 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Username is empty or null");
         }
 
-        User user = userRepository.findByUsername("cc");
+        UserEntity userEntity = userRepository.findByUsername("cc");
 
-        if (user == null) {
+        if (userEntity == null) {
             throw new UsernameNotFoundException("User not found");
         }
 
-        String password = user.getPassword();
+        String password = userEntity.getPassword();
         if (password == null) {
             throw new UsernameNotFoundException("Password not set for the user");
         }
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
+                userEntity.getUsername(),
                 password,
                 Collections.emptyList()
         );
     }
 
 
-    public List<User> loadAllUsers() {
+    public List<UserEntity> loadAllUsers() {
         return this.userRepository.findAll();
     }
 

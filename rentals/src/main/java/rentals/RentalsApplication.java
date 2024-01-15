@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rentals.persistence.User;
+import rentals.entity.UserEntity;
 import rentals.service.UserService;
 
 import java.util.List;
@@ -39,8 +39,8 @@ public class RentalsApplication {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
+    public ResponseEntity<List<UserEntity>> getAllUsers() {
+        List<UserEntity> userEntities = userService.getAllUsers();
+        return ResponseEntity.ok(userEntities);
     }
 }

@@ -78,8 +78,11 @@ public class SecurityConfig {
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return new SimpleUrlAuthenticationSuccessHandler() {
+
             @Override
             public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+                System.out.println("a trecut si pe aici");
+
                 HttpSession session = request.getSession();
                 sessionService.saveSession(session);
                 super.onAuthenticationSuccess(request, response, authentication);

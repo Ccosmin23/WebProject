@@ -1,4 +1,4 @@
-package rentals.persistence;
+package rentals.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @jakarta.persistence.Id
 
     @Id
