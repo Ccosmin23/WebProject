@@ -1,5 +1,7 @@
 package rentals.controller;
 
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import rentals.persistence.User;
 import rentals.service.CustomUserDetailsService;
+import rentals.service.SessionService;
 import rentals.service.UserService;
 
 import java.util.ArrayList;
@@ -23,6 +26,9 @@ public class SignInController {
     private final CustomUserDetailsService userDetailsService;
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private SessionService sessionService;
 
     public SignInController(PasswordEncoder passwordEncoder, CustomUserDetailsService userDetailsService, UserService userService) {
         this.passwordEncoder = passwordEncoder;
@@ -68,7 +74,11 @@ public class SignInController {
         return ResponseEntity.ok(users);
     }
 
-
+    @GetMapping("/session")
+    public String home(HttpSession session) {
+        sessionService.saveSession(session);
+        return "index";
+    }
 
 
 }
