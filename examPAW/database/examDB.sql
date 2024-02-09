@@ -10,9 +10,7 @@ CREATE TABLE items
 );
 
 insert into items (id, name)
-values (1, 'Item A'),
-       (2, 'Item B'),
-       (3, 'Item C');
+values (999, 'cosmin test');
 
-
+delete from items where id =3;
 select * from items;
