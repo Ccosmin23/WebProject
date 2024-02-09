@@ -43,8 +43,8 @@ public class SecurityConfig {
                                 antMatcher("/hello"),
                                 antMatcher("/api/public/auth/test"),
                                 antMatcher("/lista"),
-                                antMatcher("/lista"),
-                                antMatcher("/lista")
+                                antMatcher("/update"),
+                                antMatcher("/item/{id}")
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
