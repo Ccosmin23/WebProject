@@ -6,15 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import examPAW.entity.ItemEntity;
 import examPAW.service.ItemsService;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RestController
 public class MainController {
     @Autowired
     private final ItemsService itemsService;
 
     public MainController(ItemsService itemsService) {
         this.itemsService = itemsService;
+    }
+
+    @GetMapping("/hello2")
+    public String hello2() {
+        return "Hello World";
     }
 
     //

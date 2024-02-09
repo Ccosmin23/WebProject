@@ -23,6 +23,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers(
                                 antMatcher("/hello"),
+                                antMatcher("/hello2"),
                                 antMatcher("/lista"),
                                 antMatcher("/update"),
                                 antMatcher("/item/{id}")
