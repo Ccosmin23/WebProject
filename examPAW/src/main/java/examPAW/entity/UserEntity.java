@@ -1,4 +1,4 @@
-package rentals.entity;
+package examPAW.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

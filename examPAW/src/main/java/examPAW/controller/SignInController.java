@@ -1,4 +1,4 @@
-package rentals.controller;
+package examPAW.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import rentals.entity.UserEntity;
-import rentals.service.CustomUserDetailsService;
+import examPAW.entity.UserEntity;
+import examPAW.service.CustomUserDetailsService;
 //import rentals.service.SessionService;
-import rentals.service.UserService;
+import examPAW.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;

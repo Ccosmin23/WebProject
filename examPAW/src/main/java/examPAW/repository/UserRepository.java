@@ -1,8 +1,8 @@
-package rentals.repository;
+package examPAW.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import rentals.entity.UserEntity;
+import examPAW.entity.UserEntity;
 
 import java.util.List;
 

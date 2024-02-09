@@ -1,8 +1,8 @@
-package rentals.service;
+package examPAW.service;
 
 import org.springframework.stereotype.Service;
-import rentals.entity.UserEntity;
-import rentals.repository.UserRepository;
+import examPAW.entity.UserEntity;
+import examPAW.repository.UserRepository;
 
 import java.util.List;
 
