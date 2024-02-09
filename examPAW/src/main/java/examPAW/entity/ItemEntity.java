@@ -15,6 +15,15 @@ public class ItemEntity {
     private Integer id;
     private String name;
 
+//    public ItemEntity(Integer id, String name) {
+//        this.id = id;
+//        this.name = name;
+//    }
+
+//    public ItemEntity() {
+//
+//    }
+
     public Integer getId() {
         return id;
     }

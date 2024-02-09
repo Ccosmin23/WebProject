@@ -10,4 +10,7 @@ import java.util.List;
 public interface ItemsRepository extends JpaRepository<ItemEntity, Long> {
     ItemEntity findById(Integer id);
     List<ItemEntity> findAll();
+
+    @Override
+    <S extends ItemEntity> S save(S entity);
 }

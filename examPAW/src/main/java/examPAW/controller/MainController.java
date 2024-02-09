@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import examPAW.entity.ItemEntity;
 import examPAW.service.ItemsService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -38,8 +39,9 @@ public class MainController {
      * o sa folosim /update pentru inserarea datelor preluate din API-ul extern
      */
     @PostMapping("/update")
-    public String inserareDate() {
-        return "Hello World";
+    public ResponseEntity<ItemEntity> inserareDate(@RequestBody ItemEntity itemEntity) {
+        ItemEntity savedItem = itemsService.saveItem(itemEntity);
+        return ResponseEntity.ok(savedItem);
     }
 
     /**
