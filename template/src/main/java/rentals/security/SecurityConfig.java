@@ -38,28 +38,12 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers(
-                                antMatcher("/api/public/auth/login"),
-                                antMatcher("/api/public/auth/all"),
                                 antMatcher("/hello"),
-                                antMatcher("/api/public/auth/test"),
                                 antMatcher("/lista"),
                                 antMatcher("/update"),
                                 antMatcher("/item/{id}")
                         ).permitAll()
                         .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/api/public/auth/login")
-                        .loginProcessingUrl("/api/public/auth/session")
-//                        .successHandler(authenticationSuccessHandler())
-//                        .failureHandler(myAuthenticationFailureHandler())
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/api/auth/logout"))
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                        .permitAll()
                 );
         return http.build();
     }
